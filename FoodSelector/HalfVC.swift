@@ -10,6 +10,7 @@ import CoreLocation
 
 class HalfVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     // TODO: fix the open for venues
+    // TODO: set up git
     // TODO: fix the search order so you click correct venue
     // TODO: fix the constraints
     // TODO: fix the venue view height in the infoVC

@@ -120,10 +120,6 @@ class HalfVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLo
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
         
-        //Looks for single or multiple taps.
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
-        
         venuesTableView.delegate = self
         venuesTableView.dataSource = self
         venuesTableView.layer.cornerRadius = 20

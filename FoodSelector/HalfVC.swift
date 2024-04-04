@@ -10,9 +10,7 @@ import CoreLocation
 
 class HalfVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     // TODO: fix the open for venues
-    // TODO: fix the search order so you click correct venue
-    // TODO: make the segue work for the no conection screen
-    // TODO: can use the filteredVenues array to hold venues sorted by distance so other categories are filtered by distance along with price or ratings
+    // TODO: make it faster/smoother
     
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var venuesTableView: UITableView!
@@ -72,7 +70,6 @@ class HalfVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLo
     var grayColor = UIColor(red: 0.59607843, green: 0.82745098, blue: 0.75686275, alpha: 1) // dark green ish button
     var orangeColor = UIColor(red: 0.99607843, green: 0.49803922, blue: 0.42745098, alpha: 1) // orange button
     var loaded = false
-    var noConnection = false
     var cat = 0 { // category - how the table view if filtered
         didSet {
             switch cat { // changes apperance of buttons
@@ -271,11 +268,6 @@ class HalfVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! CustomCell
         let venue = filteredVenues[indexPath.row]
-        
-        if noConnection {
-            performSegue(withIdentifier: "BadConnectionSegue", sender: indexPath)
-            noConnection = false
-        }
             
         cell.venueNameLabel!.text = venue.name
         if !venue.is_closed! {

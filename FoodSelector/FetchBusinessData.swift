@@ -95,7 +95,6 @@ extension HalfVC {
             } else {
                 // no internet connection
                 print("bad connection")
-                completionHandler(nil, nil)
             }
         }.resume()
     }

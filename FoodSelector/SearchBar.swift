@@ -13,7 +13,7 @@ extension HalfVC: UISearchBarDelegate {
         filteredVenues = []
         if searchText == "" {
             filteredVenues = venues
-            
+            venueInfo()
         }
         
         for venue in venues {
@@ -22,6 +22,7 @@ extension HalfVC: UISearchBarDelegate {
                 filteredVenues.append(venue)
             }
         }
+        venueInfo()
         self.venuesTableView.reloadData()
     }
     

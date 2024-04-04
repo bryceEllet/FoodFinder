@@ -11,8 +11,6 @@ import CoreLocation
 class HalfVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     // TODO: fix the open for venues
     // TODO: fix the search order so you click correct venue
-    // TODO: fix the constraints
-    // TODO: fix the venue view height in the infoVC
     // TODO: make the segue work for the no conection screen
     // TODO: can use the filteredVenues array to hold venues sorted by distance so other categories are filtered by distance along with price or ratings
     

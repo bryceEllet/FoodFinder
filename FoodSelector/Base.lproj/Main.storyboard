@@ -347,7 +347,6 @@
                         <outlet property="venueSearchBar" destination="UQU-XI-gjq" id="6eS-CM-NZ6"/>
                         <outlet property="venuesTableView" destination="3yE-Dh-JsX" id="Aov-di-Cdz"/>
                         <segue destination="Cvs-gR-wd6" kind="show" identifier="VenueSegue" id="jNr-Aq-BMS"/>
-                        <segue destination="HCQ-BV-sVr" kind="show" identifier="BadConnectionSegue" id="PrR-33-Dxv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4EF-T1-vbu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -587,45 +586,6 @@
                 <exit id="bqP-IM-ZpD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2511.594202898551" y="-28.125"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="B5o-z3-bDK">
-            <objects>
-                <viewController id="HCQ-BV-sVr" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="LEd-e7-d1E">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Something went wrong!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T62-7P-ElC">
-                                <rect key="frame" x="20" y="432" width="374" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="30"/>
-                                <color key="textColor" red="0.26274509800000001" green="0.26274509800000001" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Oh No!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yZ3-zb-uzM">
-                                <rect key="frame" x="20" y="384" width="374" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="35"/>
-                                <color key="textColor" red="0.26274509800000001" green="0.26274509800000001" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please check your conection." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbh-2p-ccy">
-                                <rect key="frame" x="20" y="473" width="374" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Cochin-Bold" family="Cochin" pointSize="30"/>
-                                <color key="textColor" red="0.26274509800000001" green="0.26274509800000001" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="lOn-mi-sSt"/>
-                        <color key="backgroundColor" red="0.6588235294" green="0.90196078430000004" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="EtQ-vo-Aw4"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hjs-x2-sCq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2493" y="-710"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="z7z-GQ-oIg">

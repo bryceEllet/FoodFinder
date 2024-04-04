@@ -11,6 +11,7 @@ import CoreLocation
 class HalfVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     // TODO: fix the open for venues
     // TODO: make it faster/smoother
+    // TODO: make a default venue array to make sure all the venues stay
     
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var venuesTableView: UITableView!

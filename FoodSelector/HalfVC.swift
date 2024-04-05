@@ -211,6 +211,17 @@ class HalfVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLo
                         count += 1
                     }
                 }
+                count = 0
+                for venue in venues {
+                    if count < venues.count-1 {
+                        if venue.distance! > venues[count + 1].distance! {
+                            let element = venues.remove(at: count)
+                            venues.insert(element, at: count + 1)
+                            error += 1
+                        }
+                        count += 1
+                    }
+                }
             } while error > 0
         } else if filter == "Popular" {
             var error = 0
@@ -222,6 +233,17 @@ class HalfVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLo
                         if venue.rating! < filteredVenues[count + 1].rating! {
                             let element = filteredVenues.remove(at: count)
                             filteredVenues.insert(element, at: count + 1)
+                            error += 1
+                        }
+                        count += 1
+                    }
+                }
+                count = 0
+                for venue in venues {
+                    if count < venues.count-1 {
+                        if venue.rating! < venues[count + 1].rating! {
+                            let element = venues.remove(at: count)
+                            venues.insert(element, at: count + 1)
                             error += 1
                         }
                         count += 1
@@ -243,6 +265,17 @@ class HalfVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLo
                         count += 1
                     }
                 }
+                count = 0
+                for venue in venues {
+                    if count < venues.count-1 {
+                        if venue.closedNum! > venues[count + 1].closedNum! {
+                            let element = venues.remove(at: count)
+                            venues.insert(element, at: count + 1)
+                            error += 1
+                        }
+                        count += 1
+                    }
+                }
             } while error > 0
         } else { // filter == Ratings
             var error = 0
@@ -259,9 +292,20 @@ class HalfVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLo
                         count += 1
                     }
                 }
+                count = 0
+                for venue in venues {
+                    if count < venues.count-1 {
+                        if venue.reviews! < venues[count + 1].reviews! {
+                            let element = venues.remove(at: count)
+                            venues.insert(element, at: count + 1)
+                            error += 1
+                        }
+                        count += 1
+                    }
+                }
             } while error > 0
         }
-        venues = filteredVenues // keeps base array updated
+//        venues = filteredVenues // keeps base array updated
         venuesTableView.reloadData()
         venueInfo()
     }

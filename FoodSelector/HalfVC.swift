@@ -9,9 +9,8 @@ import UIKit
 import CoreLocation
 
 class HalfVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
-    // TODO: fix the open for venues
     // TODO: make it faster/smoother
-    // TODO: make a default venue array to make sure all the venues stay
+    // TODO: get rid of open button
     
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var venuesTableView: UITableView!
@@ -36,10 +35,10 @@ class HalfVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLo
         }
     }
     @IBAction func priceButtonPressed(_ sender: UIButton) {
-        if cat != 2 { // so didSet only runs if needed (smoother app)
-            cat = 2
-            filterList(filter: "Price")
-        }
+//        if cat != 2 { // so didSet only runs if needed (smoother app)
+//            cat = 2
+//            filterList(filter: "Price")
+//        }
     }
     @IBAction func ratingsButtonPressed(_ sender: UIButton) {
         if cat != 3 { // so didSet only runs if needed (smoother app)
@@ -63,7 +62,7 @@ class HalfVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLo
     var venueReviewAmounts: [Int] = []
     var venuePrices: [String] = []
     var venueAddresses: [String] = []
-    var venueClosed: [Bool] = []
+    var venueDistance: [Double] = []
     var venueImagePaths: [String] = []
     var venueIds: [String] = []
     
@@ -177,7 +176,7 @@ class HalfVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLo
                 venueReviewAmounts[count] = venue.reviews!
                 venuePrices[count] = venue.phone!
                 venueImagePaths[count] = venue.imagePath!
-                venueClosed[count] = venue.is_closed!
+                venueDistance[count] = venue.distance!
                 venueAddresses[count] = venue.address!
                 venueIds[count] = venue.id!
             } else {
@@ -187,7 +186,7 @@ class HalfVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLo
                 venueReviewAmounts.append(venue.reviews!)
                 venuePrices.append(venue.phone!)
                 venueImagePaths.append(venue.imagePath!)
-                venueClosed.append(venue.is_closed!)
+                venueDistance.append(venue.distance!)
                 venueAddresses.append(venue.address!)
                 venueIds.append(venue.id!)
             }
@@ -250,34 +249,7 @@ class HalfVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLo
                     }
                 }
             } while error > 0
-        } else if filter == "Price" {
-            var error = 0
-            repeat {
-                error = 0
-                var count = 0
-                for venue in filteredVenues {
-                    if count < filteredVenues.count-1 {
-                        if venue.closedNum! > filteredVenues[count + 1].closedNum! {
-                            let element = filteredVenues.remove(at: count)
-                            filteredVenues.insert(element, at: count + 1)
-                            error += 1
-                        }
-                        count += 1
-                    }
-                }
-                count = 0
-                for venue in venues {
-                    if count < venues.count-1 {
-                        if venue.closedNum! > venues[count + 1].closedNum! {
-                            let element = venues.remove(at: count)
-                            venues.insert(element, at: count + 1)
-                            error += 1
-                        }
-                        count += 1
-                    }
-                }
-            } while error > 0
-        } else { // filter == Ratings
+        }  else { // filter == Ratings
             var error = 0
             repeat {
                 error = 0
@@ -315,11 +287,7 @@ class HalfVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLo
         let venue = filteredVenues[indexPath.row]
             
         cell.venueNameLabel!.text = venue.name
-        if !venue.is_closed! {
-            cell.venueOpenLabel!.text = "--> Open <--"
-        } else {
-            cell.venueOpenLabel!.text = "--> Closed <--"
-        }
+        cell.venueOpenLabel!.text = venue.address
         
         // rating image
         var imagePath = "Review_Ribbon_small_16_"
@@ -378,11 +346,11 @@ class HalfVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLo
         }
         
         // distance
-            if self.miles {
-                cell.distanceLabel.text = String(format: "%.2f mi", venue.distance ?? "0.0")
-            } else {
-                cell.distanceLabel.text = String(format: "%.2f km", venue.distance ?? "0.0")
-            }
+        if self.miles {
+            cell.distanceLabel.text = String(format: "%.2f mi", venue.distance ?? "0.0")
+        } else {
+            cell.distanceLabel.text = String(format: "%.2f km", venue.distance ?? "0.0")
+        }
         
         // number of ratings
         if venue.reviews ?? 1 > 1 {
@@ -420,9 +388,10 @@ class HalfVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLo
                 infoVC.venueReviewAmount = venueReviewAmounts[indexPath.row]
                 infoVC.venuePrice = venuePrices[indexPath.row]
                 infoVC.venueImagePath = venueImagePaths[indexPath.row]
-                infoVC.venueClosed = venueClosed[indexPath.row]
+                infoVC.venueDistance = venueDistance[indexPath.row]
                 infoVC.venueAddress = venueAddresses[indexPath.row]
                 infoVC.venueId = venueIds[indexPath.row]
+                infoVC.venueMiles = miles
             }
         }
     }

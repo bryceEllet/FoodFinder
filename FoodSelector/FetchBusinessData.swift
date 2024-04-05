@@ -50,7 +50,6 @@ extension HalfVC {
                         venue.rating = business.value(forKey: "rating") as? Float
                         venue.phone = business.value(forKey: "phone") as? String
                         venue.distance = business.value(forKey: "distance") as? Double
-                        venue.is_closed = business.value(forKey: "is_closed") as? Bool
                         venue.reviews = business.value(forKey: "review_count") as? Int
                         venue.address = business.value(forKeyPath: "location.address1") as? String
                         venue.imagePath = business.value(forKeyPath: "image_url") as? String
@@ -58,12 +57,6 @@ extension HalfVC {
                         venue.country = business.value(forKeyPath: "location.country") as? String
                         venue.longitude = business.value(forKeyPath: "coordinates.longitude") as? Double
                         venue.latitude = business.value(forKeyPath: "coordinates.latitude") as? Double
-                        
-                        if venue.is_closed == true {
-                            venue.closedNum = 1
-                        } else {
-                            venue.closedNum = 0
-                        }
                         
                         // ---Rating---
                         if venue.rating == nil {

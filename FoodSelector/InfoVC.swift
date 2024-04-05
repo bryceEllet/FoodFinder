@@ -28,10 +28,11 @@ class InfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var venueReviewAmount: Int?
     var venuePrice: String?
     var venueAddress: String?
-    var venueClosed: Bool?
+    var venueDistance: Double?
     var venueImagePath: String?
     var venueId: String?
     var country: String?
+    var venueMiles: Bool?
     
     var isHidden: Bool = false
     var ratings: [Float] = [0, 0.5, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5]
@@ -74,11 +75,13 @@ class InfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if let address = venueAddress {
             venueAddressLabel.text = address
         }
-        if let closed = venueClosed {
-            if !closed {
-                venueClosedLabel.text = "Open"
-            } else {
-                venueClosedLabel.text = "Closed"
+        if let distance = venueDistance {
+            if let miles = venueMiles {
+                if miles {
+                    venueClosedLabel.text = String(format: "%.2f mi", distance)
+                } else {
+                    venueClosedLabel.text = String(format: "%.2f km", distance)
+                }
             }
         }
         if let imagePath = venueImagePath {

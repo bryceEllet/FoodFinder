@@ -12,8 +12,6 @@ struct Venue {
     var id: String? 
     var rating: Float?
     var phone: String?
-    var closedNum: Int?
-    var is_closed: Bool?
     var distance: Double?
     var imagePath: String?
     var reviews: Int?

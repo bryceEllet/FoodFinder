@@ -35,15 +35,15 @@ class HalfVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLo
         }
     }
     @IBAction func priceButtonPressed(_ sender: UIButton) {
-//        if cat != 2 { // so didSet only runs if needed (smoother app)
-//            cat = 2
-//            filterList(filter: "Price")
-//        }
+        if cat != 2 { // so didSet only runs if needed (smoother app)
+            cat = 2
+            filterList(filter: "Ratings")
+        }
     }
     @IBAction func ratingsButtonPressed(_ sender: UIButton) {
         if cat != 3 { // so didSet only runs if needed (smoother app)
             cat = 3
-            filterList(filter: "Ratings")
+            filterList(filter: "A-Z")
         }
     }
     
@@ -210,17 +210,7 @@ class HalfVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLo
                         count += 1
                     }
                 }
-                count = 0
-                for venue in venues {
-                    if count < venues.count-1 {
-                        if venue.distance! > venues[count + 1].distance! {
-                            let element = venues.remove(at: count)
-                            venues.insert(element, at: count + 1)
-                            error += 1
-                        }
-                        count += 1
-                    }
-                }
+                venues = filteredVenues
             } while error > 0
         } else if filter == "Popular" {
             var error = 0
@@ -237,19 +227,27 @@ class HalfVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLo
                         count += 1
                     }
                 }
-                count = 0
-                for venue in venues {
-                    if count < venues.count-1 {
-                        if venue.rating! < venues[count + 1].rating! {
-                            let element = venues.remove(at: count)
-                            venues.insert(element, at: count + 1)
+                venues = filteredVenues
+            } while error > 0
+        } else if filter == "A-Z" {
+            var count = 0
+            var error = 0
+            repeat {
+                error = 0
+                var count = 0
+                for venue in filteredVenues {
+                    if count < filteredVenues.count-1 {
+                        if venue.name! > filteredVenues[count + 1].name! {
+                            let element = filteredVenues.remove(at: count)
+                            filteredVenues.insert(element, at: count + 1)
                             error += 1
                         }
                         count += 1
                     }
                 }
+                venues = filteredVenues
             } while error > 0
-        }  else { // filter == Ratings
+        } else { // filter == Ratings
             var error = 0
             repeat {
                 error = 0
@@ -264,17 +262,7 @@ class HalfVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLo
                         count += 1
                     }
                 }
-                count = 0
-                for venue in venues {
-                    if count < venues.count-1 {
-                        if venue.reviews! < venues[count + 1].reviews! {
-                            let element = venues.remove(at: count)
-                            venues.insert(element, at: count + 1)
-                            error += 1
-                        }
-                        count += 1
-                    }
-                }
+                venues = filteredVenues
             } while error > 0
         }
 //        venues = filteredVenues // keeps base array updated

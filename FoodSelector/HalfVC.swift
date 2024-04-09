@@ -9,9 +9,6 @@ import UIKit
 import CoreLocation
 
 class HalfVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
-    // TODO: make it faster/smoother
-    // TODO: get rid of open button
-    
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var venuesTableView: UITableView!
     
@@ -321,14 +318,18 @@ class HalfVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLo
         
         // venue image
         if venue.imagePath != "" {
-            let url = URL(string: venue.imagePath!)
-            if let data = try? Data(contentsOf: url!){
-                if let image = UIImage(data:data){
-                    DispatchQueue.main.async{
+            let imageUrl = URL(string: venue.imagePath!)!
+            URLSession.shared.dataTask(with: imageUrl) { data, response, error in
+                if let data = data, let image = UIImage(data: data) {
+                    // Update UI with the downloaded image on the main thread
+                    DispatchQueue.main.async {
                         cell.venueImage.image = image
                     }
+                } else {
+                    // Handle errors
+                    print("Error downloading image: \(error?.localizedDescription ?? "Unknown Error")")
                 }
-            }
+            }.resume()
         } else {
             cell.venueImage.image = UIImage(named: "yelp_burst")
         }

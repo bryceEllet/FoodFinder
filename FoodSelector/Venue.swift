@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Venue {
     var name: String?
@@ -14,6 +15,7 @@ struct Venue {
     var phone: String?
     var distance: Double?
     var imagePath: String?
+    var image: UIImage?
     var reviews: Int?
     var city: String?
     var country: String?

@@ -86,16 +86,20 @@ class InfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
         if let imagePath = venueImagePath {
             if imagePath != "" {
-                let url = URL(string: imagePath)
-                if let data = try? Data(contentsOf: url!){
-                    if let image = UIImage(data:data){
-                        DispatchQueue.main.async{
+                let imageUrl = URL(string: imagePath)!
+                URLSession.shared.dataTask(with: imageUrl) { data, response, error in
+                    if let data = data, let image = UIImage(data: data) {
+                        // Update UI with the downloaded image on the main thread
+                        DispatchQueue.main.async {
                             self.venueImage.image = image
                         }
+                    } else {
+                        // Handle errors
+                        print("Error downloading image: \(error?.localizedDescription ?? "Unknown Error")")
                     }
-                }
+                }.resume()
             } else {
-                venueImage.image = UIImage(named: "yelp_burst")
+                self.venueImage.image = UIImage(named: "yelp_burst")
             }
         }
         if let id = venueId {
